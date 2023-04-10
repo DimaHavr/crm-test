@@ -5,9 +5,12 @@ export const TableContainer = styled.div`
   box-shadow: 0px 10px 60px rgba(226, 236, 249, 0.5);
   border-radius: 30px;
   overflow: auto;
-  margin: 0 auto;
+  margin: auto;
   width: 100%;
   max-width: 968px;
+  @media screen and (max-width: 480px) {
+    border-radius: 0px;
+  }
 `;
 
 export const TableWrapper = styled.div`
@@ -78,6 +81,10 @@ export const TopWrapper = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 30px 53px 40px 38px;
+  @media screen and (max-width: 540px) {
+    flex-direction: column;
+    gap: 10px;
+  }
 `;
 
 export const TopTextWrapper = styled.div`
@@ -85,18 +92,23 @@ export const TopTextWrapper = styled.div`
   flex-direction: column;
   gap: 7px;
   align-items: flex-start;
+  @media screen and (max-width: 540px) {
+    align-items: center;
+  }
 `;
 
 export const Text = styled.p`
   font-weight: 600;
   font-size: 22px;
   line-height: 33px;
+  text-transform: capitalize;
   color: #000000;
 `;
 
 export const TextItem = styled.p`
   font-weight: 400;
   color: #16c098;
+  text-transform: capitalize;
 `;
 
 export const BottomWrapper = styled.div`
@@ -104,6 +116,10 @@ export const BottomWrapper = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 30px 40px 40px 38px;
+  @media screen and (max-width: 1160px) {
+    flex-direction: column;
+    gap: 10px;
+  }
 `;
 
 export const BottomText = styled.p`

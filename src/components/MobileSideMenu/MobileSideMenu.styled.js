@@ -1,6 +1,5 @@
 import styled from 'styled-components';
-import { GiHamburgerMenu } from 'react-icons/gi';
-import { TbArrowBarLeft } from 'react-icons/tb';
+import { VscChromeClose } from 'react-icons/vsc';
 import { ReactComponent as LogoIcon } from 'icons/setting.svg';
 import { ReactComponent as ChevronRightIcon } from 'icons/chevron-right.svg';
 import { ReactComponent as KeyIcon } from 'icons/key-square.svg';
@@ -10,11 +9,54 @@ import { ReactComponent as DiscountIcon } from 'icons/discount-shape.svg';
 import { ReactComponent as MessageIcon } from 'icons/message-question.svg';
 import { ReactComponent as UserIcon } from 'icons/user-square.svg';
 
-export const BurgerIcon = styled(GiHamburgerMenu)`
-  cursor: pointer;
+export const CloseIcon = styled(VscChromeClose)`
   width: 34px;
   height: 34px;
   fill: #000;
+`;
+
+export const CartWrapper = styled.div`
+  width: 100%;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 100;
+  animation: ${({ showMobileSideMenu }) =>
+    showMobileSideMenu
+      ? 'fade-in-right 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) both;'
+      : 'fade-out-right 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;'};
+
+  @keyframes fade-in-right {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  @keyframes fade-out-right {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+  @media screen and (max-width: 480px) {
+    width: 100vw;
+  }
+`;
+
+export const CartContainer = styled.div``;
+
+export const BackButton = styled.button`
+  cursor: pointer;
+  position: absolute;
+  top: 36px;
+  right: 28px;
+  background: none;
+  border: none;
+
   transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
   display: ${({ showMobileSideMenu }) =>
     showMobileSideMenu ? 'none' : 'flex'};
@@ -23,69 +65,14 @@ export const BurgerIcon = styled(GiHamburgerMenu)`
   &:focus {
     transform: scale(1.05);
   }
-`;
 
-export const CloseBarIcon = styled(TbArrowBarLeft)`
-  cursor: pointer;
-  width: 34px;
-  height: 34px;
-  fill: #000;
-  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  display: ${({ showMobileSideMenu }) =>
-    !showMobileSideMenu ? 'none' : 'flex'};
-
-  &:hover,
-  &:focus {
-    transform: scale(1.05);
-  }
-`;
-
-export const Section = styled.section`
-  display: flex;
-  width: 100%;
-  align-items: center;
-`;
-
-export const HeaderNavBar = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  @media screen and (min-width: 980px) {
+  @media screen and (min-width: 481px) {
     display: none;
   }
 `;
 
-export const ButtonNavBarBox = styled.div`
-  display: flex;
-`;
-
-export const ContentWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 51px;
-  margin: 41px 71px 50px 379px;
-  overflow: hidden;
-  @media screen and (max-width: 980px) {
-    gap: 20px;
-    margin: 36px 28px 50px 28px;
-    width: 100%;
-  }
-  @media screen and (max-width: 480px) {
-    margin: 36px 10 50px 10px;
-  }
-`;
-
-export const ContentText = styled.p`
-  font-weight: 500;
-  font-size: 24px;
-  line-height: 36px;
-  color: #000000;
-  @media screen and (max-width: 980px) {
-    text-align: center;
-  }
-`;
-
 export const Wrapper = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -96,8 +83,8 @@ export const Wrapper = styled.div`
   padding: 36px 28px 76px;
   background-color: #ffffff;
   box-shadow: 0px 10px 60px rgba(226, 236, 249, 0.5);
-  @media screen and (max-width: 980px) {
-    display: none;
+  @media screen and (max-width: 480px) {
+    width: 100%;
   }
 `;
 

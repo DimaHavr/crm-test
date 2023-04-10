@@ -1,6 +1,9 @@
-import { useState } from 'react';
-import Customers from 'components/Customers/Customers';
+import { useEffect, useRef } from 'react';
+import UserImg from 'images/Ellipse.png';
 import {
+  CartWrapper,
+  BackButton,
+  CloseIcon,
   Wrapper,
   LogoBox,
   LogoText,
@@ -21,29 +24,42 @@ import {
   UserTextWrapper,
   TextItem,
   Text,
-  Section,
-  ContentWrapper,
-  ContentText,
-  HeaderNavBar,
-  CloseBarIcon,
-  BurgerIcon,
-  ButtonNavBarBox,
-} from './SideMenu.styled';
-import UserImg from 'images/Ellipse.png';
-import MobileSideMenu from 'components/MobileSideMenu/MobileSideMenu';
+} from './MobileSideMenu.styled';
 
-const SideMenu = () => {
-  const [showMobileSideMenu, setMobileShowSideMenu] = useState(false);
-  const [showCustomers, setShowCustomers] = useState(false);
-  const handleCustomersClick = () => {
-    setShowCustomers(true);
-    setMobileShowSideMenu(false);
+const MobileSideMenu = ({
+  setMobileShowSideMenu,
+  showMobileSideMenu,
+  showCustomers,
+  handleCustomersClick,
+}) => {
+  const mobileSideMenu = useRef();
+
+  useEffect(() => {
+    const onCloseModal = event => {
+      if (event.code === 'Escape') {
+        setMobileShowSideMenu(false);
+      }
+    };
+
+    window.addEventListener('keydown', onCloseModal);
+
+    return () => {
+      window.removeEventListener('keydown', onCloseModal);
+    };
+  }, [setMobileShowSideMenu]);
+
+  const onBackdropCloseModal = event => {
+    if (event.target === event.currentTarget) {
+      setMobileShowSideMenu(false);
+    }
   };
-  const handleShowMenuClick = () => {
-    setMobileShowSideMenu(!showMobileSideMenu);
-  };
+
   return (
-    <Section>
+    <CartWrapper
+      showMobileSideMenu={showMobileSideMenu}
+      ref={mobileSideMenu}
+      onClick={onBackdropCloseModal}
+    >
       <Wrapper>
         <MenuWrapper>
           <LogoBox>
@@ -106,39 +122,12 @@ const SideMenu = () => {
             <TextItem>Project Manager</TextItem>
           </UserTextWrapper>
         </UserWrapper>
+        <BackButton type="button" onClick={() => setMobileShowSideMenu(false)}>
+          <CloseIcon />
+        </BackButton>
       </Wrapper>
-
-      <ContentWrapper>
-        <HeaderNavBar>
-          <LogoBox>
-            <LogoIconStyled />
-            <LogoText>
-              Dashboard<span>v.01</span>
-            </LogoText>
-          </LogoBox>
-          <ButtonNavBarBox onClick={handleShowMenuClick}>
-            <BurgerIcon showMobileSideMenu={showMobileSideMenu} />
-            <CloseBarIcon showMobileSideMenu={showMobileSideMenu} />
-          </ButtonNavBarBox>
-        </HeaderNavBar>
-
-        {showCustomers && (
-          <>
-            <ContentText> Hello Evano 👋🏼,</ContentText>
-            <Customers isShowCustomers={showCustomers} />
-          </>
-        )}
-        {showMobileSideMenu && (
-          <MobileSideMenu
-            showMobileSideMenu={showMobileSideMenu}
-            setMobileShowSideMenu={setMobileShowSideMenu}
-            showCustomers={showCustomers}
-            handleCustomersClick={handleCustomersClick}
-          />
-        )}
-      </ContentWrapper>
-    </Section>
+    </CartWrapper>
   );
 };
 
-export default SideMenu;
+export default MobileSideMenu;

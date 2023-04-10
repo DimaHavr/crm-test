@@ -5,16 +5,16 @@ import Pagination from '@mui/material/Pagination';
 const StyledPagination = styled(Pagination)`
   & .MuiPagination-ul {
     justify-content: center;
-    gap: 12px;
+    gap: 5px;
   }
 
   & .css-19xm0h7-MuiButtonBase-root-MuiPaginationItem-root {
     width: 23px;
-    height: 24px;
     margin: 0;
   }
 
   & .MuiPaginationItem-root {
+    font-family: 'Poppins', sans-serif;
     font-weight: 500;
     font-size: 12px;
     line-height: 100%;
@@ -35,7 +35,6 @@ const StyledPagination = styled(Pagination)`
   }
   &
     .MuiPaginationItem-root.MuiPaginationItem-sizeMedium.MuiPaginationItem-outlined.MuiPaginationItem-rounded.MuiPaginationItem-ellipsis.css-1v2lvtn-MuiPaginationItem-root {
-    font-weight: 500;
     font-size: 12px;
     line-height: 100%;
     background: none;

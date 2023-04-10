@@ -16,16 +16,29 @@ import {
   BottomText,
 } from './Customers.styled';
 import CustomersPagination from 'components/Pagination/CustomersPagination';
+import SearchBox from 'components/SearchBox/SearchBox';
+import { useState } from 'react';
 
 const Customers = () => {
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const handleInputSubmit = value => {
+    setSearchQuery(value);
+  };
+
+  const filteredData = customers.filter(row =>
+    Object.values(row).some(value =>
+      value.toString().toLowerCase().includes(searchQuery.toLowerCase())
+    )
+  );
   return (
     <TableContainer>
       <TopWrapper>
         <TopTextWrapper>
           <Text>All customers</Text>
-          <TextItem>Active Members</TextItem>
+          <TextItem>Active members</TextItem>
         </TopTextWrapper>
-        <TextItem>Search</TextItem>
+        <SearchBox onSubmit={handleInputSubmit} />
       </TopWrapper>
       <TableWrapper>
         <Table>
@@ -40,7 +53,7 @@ const Customers = () => {
             </TableRow>
           </thead>
           <TableBody>
-            {customers.map(
+            {filteredData.map(
               ({ id, name, company, phone, email, country, status }) => (
                 <TableRow key={id}>
                   <TableData>{name}</TableData>
