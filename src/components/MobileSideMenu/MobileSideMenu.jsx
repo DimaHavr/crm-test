@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { useStateContext } from '../../context/StateContext';
 import UserImg from 'images/Ellipse.png';
 import {
   SideMenuWrapper,
@@ -26,14 +27,14 @@ import {
   Text,
 } from './MobileSideMenu.styled';
 
-const MobileSideMenu = ({
-  setMobileShowSideMenu,
-  showMobileSideMenu,
-  showCustomers,
-  handleCustomersClick,
-}) => {
+const MobileSideMenu = () => {
+  const {
+    handleCustomersClick,
+    showMobileSideMenu,
+    showCustomers,
+    setMobileShowSideMenu,
+  } = useStateContext();
   const mobileSideMenu = useRef();
-
   useEffect(() => {
     const onCloseModal = event => {
       if (event.code === 'Escape') {
@@ -49,7 +50,7 @@ const MobileSideMenu = ({
   }, [setMobileShowSideMenu]);
 
   const onBackdropCloseModal = event => {
-    if (event.target === event.currentTarget) {
+    if (event.target === mobileSideMenu.current) {
       setMobileShowSideMenu(false);
     }
   };

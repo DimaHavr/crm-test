@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useStateContext } from '../../context/StateContext';
 import Customers from 'components/Customers/Customers';
 import {
   Wrapper,
@@ -33,15 +33,13 @@ import UserImg from 'images/Ellipse.png';
 import MobileSideMenu from 'components/MobileSideMenu/MobileSideMenu';
 
 const SideMenu = () => {
-  const [showMobileSideMenu, setMobileShowSideMenu] = useState(false);
-  const [showCustomers, setShowCustomers] = useState(false);
-  const handleCustomersClick = () => {
-    setShowCustomers(true);
-    setMobileShowSideMenu(false);
-  };
-  const handleShowMenuClick = () => {
-    setMobileShowSideMenu(!showMobileSideMenu);
-  };
+  const {
+    handleCustomersClick,
+    handleShowMenuClick,
+    showMobileSideMenu,
+    showCustomers,
+  } = useStateContext();
+
   return (
     <Section>
       <Wrapper>
@@ -125,17 +123,10 @@ const SideMenu = () => {
         {showCustomers && (
           <>
             <ContentText> Hello Evano 👋🏼,</ContentText>
-            <Customers isShowCustomers={showCustomers} />
+            <Customers />
           </>
         )}
-        {showMobileSideMenu && (
-          <MobileSideMenu
-            showMobileSideMenu={showMobileSideMenu}
-            setMobileShowSideMenu={setMobileShowSideMenu}
-            showCustomers={showCustomers}
-            handleCustomersClick={handleCustomersClick}
-          />
-        )}
+        {showMobileSideMenu && <MobileSideMenu />}
       </ContentWrapper>
     </Section>
   );

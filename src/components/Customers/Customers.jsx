@@ -1,3 +1,5 @@
+import { useState } from 'react';
+import { useStateContext } from '../../context/StateContext';
 import { customers } from 'services/customers';
 import {
   TableContainer,
@@ -17,11 +19,10 @@ import {
 } from './Customers.styled';
 import CustomersPagination from 'components/Pagination/CustomersPagination';
 import SearchBox from 'components/SearchBox/SearchBox';
-import { useState } from 'react';
 
 const Customers = () => {
   const [searchQuery, setSearchQuery] = useState('');
-
+  const { showCustomers } = useStateContext();
   const handleInputSubmit = value => {
     setSearchQuery(value);
   };
@@ -32,7 +33,7 @@ const Customers = () => {
     )
   );
   return (
-    <TableContainer>
+    <TableContainer showCustomers={showCustomers}>
       <TopWrapper>
         <TopTextWrapper>
           <Text>All customers</Text>

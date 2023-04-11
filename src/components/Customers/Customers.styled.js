@@ -8,6 +8,27 @@ export const TableContainer = styled.div`
   margin: auto;
   width: 100%;
   max-width: 968px;
+  animation: ${({ showCustomers }) =>
+    showCustomers
+      ? 'fade-in-right 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) both;'
+      : 'fade-out-right 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;'};
+
+  @keyframes fade-in-right {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  @keyframes fade-out-right {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
   @media screen and (max-width: 480px) {
     border-radius: 0px;
   }
