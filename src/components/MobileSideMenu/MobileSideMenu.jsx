@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import UserImg from 'images/Ellipse.png';
 import {
-  CartWrapper,
+  SideMenuWrapper,
   BackButton,
   CloseIcon,
   Wrapper,
@@ -55,7 +55,7 @@ const MobileSideMenu = ({
   };
 
   return (
-    <CartWrapper
+    <SideMenuWrapper
       showMobileSideMenu={showMobileSideMenu}
       ref={mobileSideMenu}
       onClick={onBackdropCloseModal}
@@ -126,7 +126,7 @@ const MobileSideMenu = ({
           <CloseIcon />
         </BackButton>
       </Wrapper>
-    </CartWrapper>
+    </SideMenuWrapper>
   );
 };
 

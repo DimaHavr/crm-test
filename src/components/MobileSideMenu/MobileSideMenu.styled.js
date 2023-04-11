@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { VscChromeClose } from 'react-icons/vsc';
+import { FaChevronRight } from 'react-icons/fa';
 import { ReactComponent as LogoIcon } from 'icons/setting.svg';
-import { ReactComponent as ChevronRightIcon } from 'icons/chevron-right.svg';
 import { ReactComponent as KeyIcon } from 'icons/key-square.svg';
 import { ReactComponent as WalletIcon } from 'icons/wallet-money.svg';
 import { ReactComponent as SquareIcon } from 'icons/3d-square.svg';
@@ -15,7 +15,7 @@ export const CloseIcon = styled(VscChromeClose)`
   fill: #000;
 `;
 
-export const CartWrapper = styled.div`
+export const SideMenuWrapper = styled.div`
   width: 100%;
   position: fixed;
   right: 0;
@@ -47,7 +47,7 @@ export const CartWrapper = styled.div`
   }
 `;
 
-export const CartContainer = styled.div``;
+export const Container = styled.div``;
 
 export const BackButton = styled.button`
   cursor: pointer;
@@ -138,38 +138,12 @@ export const LogoText = styled.p`
 
 export const ListItemText = styled.p`
   font-weight: 500;
-
+  align-items: center;
   display: flex;
   gap: 14px;
   color: #9197b3;
   transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
   color: ${({ isShowCustomers }) => isShowCustomers && ' #ffffff;'};
-  @media screen and (max-width: 480px) {
-  }
-`;
-
-export const ListItem = styled.li`
-  cursor: pointer;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-radius: 8px;
-  padding: 11px 8px 11px;
-  transition: border-radius 250ms cubic-bezier(0.4, 0, 0.2, 1),
-    color 250ms cubic-bezier(0.4, 0, 0.2, 1),
-    background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
-
-  &:hover,
-  &:focus {
-    background-color: #5932ea;
-    color: ${({ isShowCustomers }) => isShowCustomers && ' #ffffff;'};
-  }
-
-  &:hover ${ListItemText} {
-    color: #ffffff;
-  }
-  background-color: ${({ isShowCustomers }) => isShowCustomers && '#5932ea;'};
-
   @media screen and (max-width: 480px) {
   }
 `;
@@ -221,11 +195,13 @@ export const LogoIconStyled = styled(LogoIcon)`
 export const KeyIconStyled = styled(KeyIcon)`
   width: 24px;
   height: 24px;
+  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
 `;
 
 export const WalletIconStyled = styled(WalletIcon)`
   width: 24px;
   height: 24px;
+  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
 `;
 export const SquareIconStyled = styled(SquareIcon)`
   width: 24px;
@@ -236,19 +212,54 @@ export const DiscountIconStyled = styled(DiscountIcon)`
   width: 24px;
   height: 24px;
   fill: #9197b3;
+  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
 `;
 export const MessageIconStyled = styled(MessageIcon)`
   width: 24px;
   height: 24px;
   fill: #9197b3;
+  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
 `;
 export const UserIconStyled = styled(UserIcon)`
   width: 24px;
   height: 24px;
   fill: #9197b3;
+  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
 `;
 
-export const ChevronRightIconStyled = styled(ChevronRightIcon)`
+export const ChevronRightIconStyled = styled(FaChevronRight)`
   width: 16px;
   height: 16px;
+  fill: #9197b3;
+  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
+`;
+
+export const ListItem = styled.li`
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 8px;
+  padding: 11px 8px 11px;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  background-color: ${({ isShowCustomers }) => isShowCustomers && '#5932ea;'};
+
+  &:hover,
+  &:focus {
+    background-color: #5932ea;
+    color: ${({ isShowCustomers }) => isShowCustomers && ' #ffffff;'};
+  }
+
+  &:hover ${ListItemText}, &:focus ${ListItemText} {
+    color: #ffffff;
+  }
+
+  ${UserIconStyled} {
+    fill: ${({ isShowCustomers }) => isShowCustomers && 'rgb(89, 50, 234);'};
+  }
+  ${ChevronRightIconStyled} {
+    fill: ${({ isShowCustomers }) => isShowCustomers && '#ffffff;'};
+  }
 `;

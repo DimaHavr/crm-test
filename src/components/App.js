@@ -1,11 +1,7 @@
 import SideMenu from './SideMenu';
 
 const App = () => {
-  return (
-    <>
-      <SideMenu />
-    </>
-  );
+  return <SideMenu />;
 };
 
 export default App;
